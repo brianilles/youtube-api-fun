@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import axios from "axios";
+import "../sass/Home.scss";
 
 class Home extends React.Component {
   state = {
@@ -32,29 +33,36 @@ class Home extends React.Component {
       <div className="home">
         <div className="search">
           <form onSubmit={this.handleSearch}>
-            <label>Search</label>
-            <input
-              type="text"
-              name="search"
-              placeholder="Search for a Youtube channel"
-              value={this.state.search}
-              onChange={this.handleChange}
-              required
-            />
-            <button>Search</button>
+            <div className="search-input-wrapper">
+              <input
+                type="text"
+                name="search"
+                placeholder="Search for a Youtube channel"
+                value={this.state.search}
+                onChange={this.handleChange}
+                required
+              />
+              <button>Search</button>
+            </div>
           </form>
           {this.state.results && (
-            <div className="results">
-              {this.state.results.map((r, i) => (
-                <div className="result" key={i}>
-                  <img
-                    src={r.snippet.thumbnails.default.url}
-                    alt={r.snippet.channelTitle}
-                  />
-                  <h2>{r.snippet.channelTitle}</h2>
-                  <p>{r.snippet.description}</p>
-                </div>
-              ))}
+            <div className="results-wrapper">
+              <div className="results">
+                {this.state.results.map((r, i) => (
+                  <div className="result" key={i}>
+                    <div className="top">
+                      <img
+                        src={r.snippet.thumbnails.default.url}
+                        alt={r.snippet.channelTitle}
+                      />
+                      <p>
+                        {r.snippet.channelTitle}{" "}
+                        <span>{r.snippet.description}</span>
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           )}
         </div>

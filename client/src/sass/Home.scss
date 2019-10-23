@@ -1,0 +1,90 @@
+.home {
+  margin: 0 auto;
+  border: 1px solid red;
+  .search {
+    margin-top: 20vh;
+    form {
+      .search-input-wrapper {
+        width: 500px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        input {
+          height: 40px;
+          border: 2px solid #dddddd;
+          background-color: #dddddd;
+          border-radius: 4px 4px 0 0;
+          padding: 10px;
+          font-size: 16px;
+          width: 425px;
+        }
+        input:focus {
+          outline: none;
+          border: 2px solid red;
+        }
+        input:hover {
+          border: 2px solid red;
+        }
+        button {
+          border: none;
+          height: 40px;
+          margin-left: 10px;
+          border-radius: 5px;
+          padding: 10px;
+          font-size: 16px;
+          cursor: pointer;
+        }
+        button:focus {
+          outline: none;
+          background-color: red;
+        }
+        button:hover {
+          background-color: red;
+        }
+      }
+    }
+  }
+  .results-wrapper {
+    width: 500px;
+    margin: 0 auto;
+
+    .results {
+      width: 422px;
+      font-size: 16px;
+      border-radius: 0 0 5px 5px;
+      -webkit-box-shadow: 0px 8px 8px 3px rgba(0, 0, 0, 0.13);
+      -moz-box-shadow: 0px 8px 8px 3px rgba(0, 0, 0, 0.13);
+      box-shadow: 0px 8px 8px 3px rgba(0, 0, 0, 0.13);
+      .result {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        cursor: pointer;
+        max-height: 90px;
+        .top {
+          display: flex;
+          align-items: flex-start;
+          p {
+            margin: 0;
+            margin-left: 12px;
+            font-weight: 500;
+            span {
+              display: block;
+              font-weight: 300;
+              color: grey;
+              font-size: 13px;
+            }
+          }
+        }
+        img {
+          border-radius: 50px;
+          height: 25px;
+          padding-top: 0px;
+        }
+      }
+      .result:hover {
+        background: rgb(238, 238, 238);
+      }
+    }
+  }
+}
