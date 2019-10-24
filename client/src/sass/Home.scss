@@ -54,7 +54,8 @@
           height: 50px;
           border-radius: 10px;
           border: none;
-          padding: 10px 20px;
+          padding: 10px 0;
+          width: 85px;
           cursor: pointer;
           background-color: #3080f8;
           color: #fff;
@@ -63,7 +64,6 @@
         }
         button:focus {
           outline: none;
-          background-color: #1267e7;
         }
         button:hover {
           background-color: #1267e7;
@@ -92,11 +92,13 @@
         padding: 10px;
         cursor: pointer;
         max-height: 90px;
+        color: #000;
+        text-decoration: none;
         .top {
           display: flex;
           align-items: center;
 
-          p {
+          span {
             margin: 0;
             margin-left: 10px;
             font-weight: 500;
@@ -120,6 +122,10 @@
       }
       .result:hover {
         background: rgb(238, 238, 238);
+      }
+      .loading {
+        border: 1px solid red;
+        text-align: center;
       }
     }
   }
