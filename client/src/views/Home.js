@@ -2,11 +2,21 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import axios from "axios";
 import "../sass/Home.scss";
+import styled from "styled-components";
+import { Search } from "styled-icons/boxicons-regular/Search";
+
+const InputSearch = styled(Search)`
+  color: #000;
+  height: 22px;
+  width: 22px;
+  position: absolute;
+  margin: 14.5px;
+`;
 
 class Home extends React.Component {
   state = {
     search: "",
-    results: []
+    results: null
   };
 
   handleChange = e => {
@@ -34,13 +44,14 @@ class Home extends React.Component {
         <div className="search">
           <form onSubmit={this.handleSearch}>
             <div className="search-input-wrapper">
+              <InputSearch />
               <input
                 type="text"
                 name="search"
-                placeholder="Search for a Youtube channel"
+                autoComplete="off"
+                placeholder="Search by username"
                 value={this.state.search}
                 onChange={this.handleChange}
-                required
               />
               <button>Search</button>
             </div>
@@ -56,12 +67,18 @@ class Home extends React.Component {
                         alt={r.snippet.channelTitle}
                       />
                       <p>
-                        {r.snippet.channelTitle}{" "}
-                        <span>{r.snippet.description}</span>
+                        {r.snippet.channelTitle}
+
+                        {/* <span>{r.snippet.description}</span> */}
                       </p>
                     </div>
                   </div>
                 ))}
+                <div className="result">
+                  <div className="top">
+                    <p className="more">See more</p>
+                  </div>
+                </div>
               </div>
             </div>
           )}
