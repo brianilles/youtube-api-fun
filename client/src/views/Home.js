@@ -69,7 +69,7 @@ class Home extends React.Component {
                     type="text"
                     name="search"
                     autoComplete="off"
-                    placeholder="Search by username"
+                    placeholder="Search for a youtube channel ..."
                     value={this.state.search}
                     onChange={this.handleChange}
                     className={this.state.results && "active"}
