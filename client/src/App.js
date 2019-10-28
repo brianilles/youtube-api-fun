@@ -3,6 +3,7 @@ import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./views/Home.js";
 import Navigation from "./components/Navigation.js";
+import "./sass/reset.scss";
 
 function App() {
   return (
