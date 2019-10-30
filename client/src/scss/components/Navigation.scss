@@ -1,0 +1,55 @@
+@import "../global/variables.scss";
+@import "../global/mixins.scss";
+
+.navigation-container {
+  border-bottom: 1px solid $border;
+  height: 49px;
+  background-color: #141519;
+  .navigation {
+    max-width: 1200px;
+    height: 49px;
+    margin: 0 auto;
+    @include center;
+    .left {
+      @include center;
+      height: 49px;
+      margin: 0 20px;
+      color: $tertiary;
+    }
+    .right {
+      .router {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        a {
+          @include center;
+          text-decoration: none;
+          height: 49px;
+          padding: 0 14px;
+          color: $tertiary;
+          font-weight: 600;
+          font-size: 15px;
+        }
+        .active-nav {
+          color: $primary;
+        }
+        .login,
+        .signup {
+          box-sizing: border-box;
+          height: 33px;
+          border-radius: 3px;
+          padding: 0 26px;
+          margin: 0 10px;
+        }
+        .login {
+          border: 1px solid $primary;
+          color: $primary;
+        }
+        .signup {
+          background-color: $primary;
+          color: $secondary;
+        }
+      }
+    }
+  }
+}
