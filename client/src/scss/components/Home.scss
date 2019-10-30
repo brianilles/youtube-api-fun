@@ -1,2 +1,18 @@
 @import "../global/variables.scss";
 @import "../global/mixins.scss";
+
+.home-container {
+  border: 1px solid red;
+  .home {
+    display: flex;
+    justify-content: space-between;
+    .left-pane {
+      border: 1px solid green;
+      width: 800px;
+    }
+    .right-pane {
+      border: 1px solid blue;
+      width: 320px;
+    }
+  }
+}

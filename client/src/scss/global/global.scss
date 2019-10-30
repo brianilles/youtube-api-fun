@@ -17,11 +17,7 @@ html {
 
 .home-container,
 .trending-container {
-  padding-top: 80px;
-  height: 100vh;
-  .home,
-  .trending {
-    margin: 0 auto;
-    max-width: 1160px;
-  }
+  margin: 0 auto;
+  margin-top: 80px;
+  max-width: 1160px;
 }

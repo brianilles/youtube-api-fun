@@ -1,0 +1,11 @@
+@import "../global/variables.scss";
+@import "../global/mixins.scss";
+
+.featured-container {
+  .featured {
+    h1 {
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+  }
+}

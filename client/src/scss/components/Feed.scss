@@ -1,0 +1,22 @@
+@import "../global/variables.scss";
+@import "../global/mixins.scss";
+
+.feed-container {
+  .feed {
+    h1 {
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .general {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+      .post {
+        border: 1px dashed grey;
+        width: 185px;
+        height: 185px;
+        margin: 10px 0;
+      }
+    }
+  }
+}
