@@ -5,6 +5,9 @@
   border-bottom: 1px solid $border;
   height: 49px;
   background-color: #141519;
+  top: 0;
+  width: 100%;
+  position: fixed;
   .navigation {
     max-width: 1200px;
     height: 49px;
@@ -49,6 +52,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        margin: 0 20px;
         a {
           @include center;
           text-decoration: none;
@@ -57,6 +61,9 @@
           color: $tertiary;
           font-weight: 600;
           font-size: 15px;
+        }
+        a:last-child {
+          margin-right: 0;
         }
         .active-nav {
           color: $primary;
@@ -76,6 +83,12 @@
         .signup {
           background-color: $primary;
           color: $secondary;
+        }
+        .signup:focus {
+          background-color: $primary-dark;
+        }
+        .signup:hover {
+          background-color: $primary-dark;
         }
       }
     }

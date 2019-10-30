@@ -1,9 +1,12 @@
 import React from "react";
+import "../scss/components/Home.scss";
 
 export default function Home() {
   return (
-    <>
-      <p>home</p>
-    </>
+    <div className="home-container">
+      <div className="home">
+        <p>HOME</p>
+      </div>
+    </div>
   );
 }

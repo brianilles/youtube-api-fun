@@ -6,8 +6,8 @@ const NavSearch = styled(SearchI)`
   height: 22px;
   width: 22px;
   position: absolute;
-  margin: 7px;
-  margin-left: 310px;
+  margin: 6px;
+  margin-left: 290px;
 `;
 
 class Search extends React.Component {
