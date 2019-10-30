@@ -5,16 +5,17 @@ import "../scss/components/Navigation.scss";
 
 import { Home } from "styled-icons/fa-solid/Home";
 import { Hot } from "styled-icons/boxicons-solid/Hot";
+import Search from "./Search";
 
 const NavHome = styled(Home)`
-  height: 26px;
-  width: 26px;
+  height: 24px;
+  width: 24px;
   margin-right: 9px;
 `;
 
 const NavHot = styled(Hot)`
-  height: 26px;
-  width: 26px;
+  height: 24px;
+  width: 24px;
   margin-right: 4px;
 `;
 
@@ -26,6 +27,7 @@ class Navigation extends React.Component {
           <div className="navigation">
             <div className="left">
               <p>logo name</p>
+              <Search />
             </div>
             <div className="right">
               <div className="router">

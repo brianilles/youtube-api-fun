@@ -15,6 +15,34 @@
       height: 49px;
       margin: 0 20px;
       color: $tertiary;
+      .search-container {
+        max-width: 500px;
+        .search {
+          width: 100%;
+          form {
+            input {
+              height: 33px;
+              border: 1px solid $tertiary;
+              border-radius: 3px;
+              background: $secondary;
+              padding: 0 10px;
+              min-width: 300px;
+              margin-left: 20px;
+              color: $primary;
+            }
+            input::placeholder {
+              color: $tertiary;
+            }
+            input:focus {
+              outline: none;
+              border: 1px solid $primary;
+            }
+            input:hover {
+              border: 1px solid $primary;
+            }
+          }
+        }
+      }
     }
     .right {
       .router {
