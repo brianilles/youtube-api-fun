@@ -10,7 +10,7 @@ router.get("/search/channel/:channel", async (req, res) => {
         q: channel,
         type: "channel",
         maxResults: 10,
-        key: process.env.YT_API_KEY
+        key: "AIzaSyDDKNauQQXppEQAvr1I33ukU5egBHIPmN8"
       }
     });
     res.status(200).json(r.data.items);
@@ -19,8 +19,5 @@ router.get("/search/channel/:channel", async (req, res) => {
     res.status(500).end();
   }
 });
-
-// router.get('/channel/:channel/analytics', async (req, res) => {
-// });
 
 module.exports = router;
