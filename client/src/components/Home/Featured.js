@@ -6,7 +6,26 @@ export default function Featured() {
     <div className="featured-container">
       <div className="featured">
         <h1>Featured</h1>
-        <p>TBD</p>
+        <div className="hashtags">
+          <p>
+            #test <span>2.81m</span>
+          </p>
+          <p>
+            #test2<span>1.12m</span>
+          </p>
+          <p>
+            #test <span>2.81m</span>
+          </p>
+          <p>
+            #test2<span>1.12m</span>
+          </p>
+          <p>
+            #test <span>2.81m</span>
+          </p>
+          <p>
+            #test2<span>1.12m</span>
+          </p>
+        </div>
       </div>
     </div>
   );

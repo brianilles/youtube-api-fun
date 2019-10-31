@@ -11,11 +11,44 @@
       display: flex;
       flex-flow: row wrap;
       justify-content: space-between;
+      padding: 0 5px;
       .post {
-        border: 1px dashed grey;
         width: 185px;
         height: 185px;
-        margin: 10px 0;
+        margin-top: 15px;
+        padding: 5px;
+        display: flex;
+        flex-direction: column;
+        background: #fff;
+        border: 1px solid rgb(226, 226, 226);
+        // -webkit-box-shadow: 0px 0px 2px 3px rgba(247, 247, 247, 1);
+        // -moz-box-shadow: 0px 0px 2px 3px rgba(247, 247, 247, 1);
+        // box-shadow: 0px 0px 2px 3px rgba(247, 247, 247, 1);
+        border-radius: 8px;
+        .source {
+          border: 1px solid red;
+          height: 60px;
+          @include center;
+          color: $tertiary;
+          .media {
+            display: flex;
+            img {
+              height: 35px;
+              border-radius: 100px;
+              padding-right: 5px;
+            }
+          }
+        }
+        .preview {
+          border: 1px solid red;
+          height: 120px;
+        }
+        .options {
+          border: 1px solid red;
+          height: 30px;
+          text-align: right;
+          padding: 2px;
+        }
       }
     }
   }
