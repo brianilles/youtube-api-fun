@@ -2,24 +2,41 @@
 @import "../global/mixins.scss";
 
 .featured-container {
+  position: sticky;
+  top: -275px;
+  z-index: -1;
   .featured {
-    h1 {
-      font-weight: 700;
-      margin-bottom: 25px;
-    }
-    .hashtags {
+    margin-top: 30px;
+    border-radius: 8px;
+    font-size: 15px;
+    .section-a,
+    .section-b {
+      h1 {
+        font-weight: 600;
+        margin: 16px 0;
+        color: $primary;
+      }
+      padding-left: 12.5px;
+      background: #fff;
+      border: 1px solid rgb(240, 240, 240);
+      border-radius: 8px;
+      width: 300px;
       p {
         @include center;
-        border: 1px dashed grey;
+        border-top: 1px solid rgb(230, 230, 230);
         height: 35px;
         margin-top: 5px;
         padding: 5px;
-        font-weight: 600;
+        font-weight: 400;
+        font-size: 14px;
         span {
-          font-weight: 400;
+          font-weight: 600;
           margin-left: 8px;
         }
       }
+    }
+    .section-b {
+      margin-top: 15px;
     }
   }
 }

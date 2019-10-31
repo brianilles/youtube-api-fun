@@ -2,17 +2,17 @@
 @import "../global/mixins.scss";
 
 .home-container {
-  border: 1px solid red;
+  // border: 1px solid red;
   .home {
     display: flex;
     justify-content: space-between;
     .left-pane {
-      border: 1px solid green;
-      width: 800px;
+      // border: 1px solid green;
+      width: 840px;
     }
     .right-pane {
-      border: 1px solid blue;
-      width: 320px;
+      // border: 1px solid blue;
+      width: 300px;
     }
   }
 }
