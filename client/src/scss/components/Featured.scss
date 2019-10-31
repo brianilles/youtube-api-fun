@@ -3,7 +3,7 @@
 
 .featured-container {
   position: sticky;
-  top: -275px;
+  top: -278px;
   z-index: -1;
   .featured {
     margin-top: 30px;
@@ -11,19 +11,20 @@
     font-size: 15px;
     .section-a,
     .section-b {
+      background: $background-secondary;
       h1 {
         font-weight: 600;
         margin: 16px 0;
         color: $primary;
       }
       padding-left: 12.5px;
-      background: #fff;
-      border: 1px solid rgb(240, 240, 240);
+      border: 2px solid #37393d;
       border-radius: 8px;
       width: 300px;
+      color: $tertiary;
       p {
         @include center;
-        border-top: 1px solid rgb(230, 230, 230);
+        border-top: 1px solid #37393d;
         height: 35px;
         margin-top: 5px;
         padding: 5px;
