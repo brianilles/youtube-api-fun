@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const axios = require("axios");
 
-router.get("/public", (req, res) => {
+router.get("/public", async (req, res) => {
   /*
         -> This endpoint will request all popular posts from Youtube, Instagram, and Twitter 
         in parallel. 
@@ -11,7 +11,23 @@ router.get("/public", (req, res) => {
         -> It's pretty basic an endpoint in it of itself. The hard part will be the parallel requests 
         to the 3rd party apis but it is doable.
     */
-  res.send("PUBLIC FEEEEEEEEEEEEEED");
+  try {
+    const yRes = await axios.get(
+      "https://www.googleapis.com/youtube/v3/videos",
+      {
+        params: {
+          part: "snippet",
+          chart: "mostPopular",
+          maxResults: 12,
+          key: 
+        }
+      }
+    );
+    res.status(200).json(yRes.data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).end();
+  }
 });
 
 // there is a featured section which will show trending hashtags
