@@ -46,7 +46,8 @@ class Feed extends React.Component {
     gettingFeed: null,
     gettingFeedSuccess: null,
     gettingFeedFailure: null,
-    error: null
+    error: null,
+    feed: null
   };
 
   componentDidMount() {
@@ -61,7 +62,8 @@ class Feed extends React.Component {
       const res = await axios.get(URI);
       this.setState({
         gettingFeed: null,
-        gettingFeedSuccess: true
+        gettingFeedSuccess: true,
+        feed: res.data.items
       });
       console.log(res);
     } catch (error) {
@@ -75,418 +77,440 @@ class Feed extends React.Component {
       <div className="feed-container">
         <div className="feed">
           <h1>Top Posts</h1>
-          <div className="general">
-            <a href="#" className="post">
-              <span className="source">
-                <span className="media">
-                  <img src={TestAvatar} alt="testavatar" />
-                </span>
-                <span>
-                  <PostInstagram />
-                </span>
-              </span>
-              <div className="preview">preview</div>
-              <div className="options">
-                <PostLink />
+          {this.state.gettingFeed && <p>getting feed ...</p>}
+          {!this.state.gettingFeed &&
+            this.state.gettingFeedSuccess &&
+            this.state.feed && (
+              <div className="general">
+                {this.state.feed.map((post, i) => {
+                  if (post.kind === "youtube#video") {
+                    return (
+                      // change key
+                      <a href="#" className="post" key={i}>
+                        <span className="source">
+                          <span className="media">
+                            <img src={TestAvatar} alt="testavatar" />
+                          </span>
+                          <span>
+                            <PostYoutube />
+                          </span>
+                        </span>
+                        <div className="preview">
+                          <img
+                            src={post.snippet.thumbnails.medium.url}
+                            alt=""
+                          />
+                          <p>{post.snippet.title}</p>
+                        </div>
+                        <div className="options">
+                          <PostLink />
+                        </div>
+                      </a>
+                    );
+                  } else {
+                    return <p>incorrect type</p>;
+                  }
+                })}
               </div>
-            </a>
+            )
+          // <div className="general">
+          //   <a href="#" className="post">
+          //     <span className="source">
+          //       <span className="media">
+          //         <img src={TestAvatar} alt="testavatar" />
+          //       </span>
+          //       <span>
+          //         <PostInstagram />
+          //       </span>
+          //     </span>
+          //     <div className="preview">preview</div>
+          //     <div className="options">
+          //       <PostLink />
+          //     </div>
+          //   </a>
 
-            <a href="#" className="post">
-              <span className="source">
-                <span className="media">
-                  <img src={TestAvatar} alt="testavatar" />
-                </span>
-                <span>
-                  <PostTwitter />
-                </span>
-              </span>
-              <div className="preview">preview</div>
-              <div className="options">
-                <PostLink />
-              </div>
-            </a>
+          //   <a href="#" className="post">
+          //     <span className="source">
+          //       <span className="media">
+          //         <img src={TestAvatar} alt="testavatar" />
+          //       </span>
+          //       <span>
+          //         <PostTwitter />
+          //       </span>
+          //     </span>
+          //     <div className="preview">preview</div>
+          //     <div className="options">
+          //       <PostLink />
+          //     </div>
+          //   </a>
 
-            <a href="#" className="post">
-              <span className="source">
-                <span className="media">
-                  <img src={TestAvatar} alt="testavatar" />
-                </span>
-                <span>
-                  <PostYoutube />
-                </span>
-              </span>
-              <div className="preview">preview</div>
-              <div className="options">
-                <PostLink />
-              </div>
-            </a>
-            <a href="#" className="post">
-              <span className="source">
-                <span className="media">
-                  <img src={TestAvatar} alt="testavatar" />
-                </span>
-                <span>
-                  <PostInstagram />
-                </span>
-              </span>
-              <div className="preview">preview</div>
-              <div className="options">
-                <PostLink />
-              </div>
-            </a>
+          //   <a href="#" className="post">
+          //     <span className="source">
+          //       <span className="media">
+          //         <img src={TestAvatar} alt="testavatar" />
+          //       </span>
+          //       <span>
+          //         <PostInstagram />
+          //       </span>
+          //     </span>
+          //     <div className="preview">preview</div>
+          //     <div className="options">
+          //       <PostLink />
+          //     </div>
+          //   </a>
 
-            <a href="#" className="post">
-              <span className="source">
-                <span className="media">
-                  <img src={TestAvatar} alt="testavatar" />
-                </span>
-                <span>
-                  <PostTwitter />
-                </span>
-              </span>
-              <div className="preview">preview</div>
-              <div className="options">
-                <PostLink />
-              </div>
-            </a>
+          //   <a href="#" className="post">
+          //     <span className="source">
+          //       <span className="media">
+          //         <img src={TestAvatar} alt="testavatar" />
+          //       </span>
+          //       <span>
+          //         <PostTwitter />
+          //       </span>
+          //     </span>
+          //     <div className="preview">preview</div>
+          //     <div className="options">
+          //       <PostLink />
+          //     </div>
+          //   </a>
 
-            <a href="#" className="post">
-              <span className="source">
-                <span className="media">
-                  <img src={TestAvatar} alt="testavatar" />
-                </span>
-                <span>
-                  <PostYoutube />
-                </span>
-              </span>
-              <div className="preview">preview</div>
-              <div className="options">
-                <PostLink />
-              </div>
-            </a>
-            <a href="#" className="post">
-              <span className="source">
-                <span className="media">
-                  <img src={TestAvatar} alt="testavatar" />
-                </span>
-                <span>
-                  <PostInstagram />
-                </span>
-              </span>
-              <div className="preview">preview</div>
-              <div className="options">
-                <PostLink />
-              </div>
-            </a>
+          //   <a href="#" className="post">
+          //     <span className="source">
+          //       <span className="media">
+          //         <img src={TestAvatar} alt="testavatar" />
+          //       </span>
+          //       <span>
+          //         <PostYoutube />
+          //       </span>
+          //     </span>
+          //     <div className="preview">preview</div>
+          //     <div className="options">
+          //       <PostLink />
+          //     </div>
+          //   </a>
+          //   <a href="#" className="post">
+          //     <span className="source">
+          //       <span className="media">
+          //         <img src={TestAvatar} alt="testavatar" />
+          //       </span>
+          //       <span>
+          //         <PostInstagram />
+          //       </span>
+          //     </span>
+          //     <div className="preview">preview</div>
+          //     <div className="options">
+          //       <PostLink />
+          //     </div>
+          //   </a>
 
-            <a href="#" className="post">
-              <span className="source">
-                <span className="media">
-                  <img src={TestAvatar} alt="testavatar" />
-                </span>
-                <span>
-                  <PostTwitter />
-                </span>
-              </span>
-              <div className="preview">preview</div>
-              <div className="options">
-                <PostLink />
-              </div>
-            </a>
+          //   <a href="#" className="post">
+          //     <span className="source">
+          //       <span className="media">
+          //         <img src={TestAvatar} alt="testavatar" />
+          //       </span>
+          //       <span>
+          //         <PostTwitter />
+          //       </span>
+          //     </span>
+          //     <div className="preview">preview</div>
+          //     <div className="options">
+          //       <PostLink />
+          //     </div>
+          //   </a>
 
-            <a href="#" className="post">
-              <span className="source">
-                <span className="media">
-                  <img src={TestAvatar} alt="testavatar" />
-                </span>
-                <span>
-                  <PostYoutube />
-                </span>
-              </span>
-              <div className="preview">preview</div>
-              <div className="options">
-                <PostLink />
-              </div>
-            </a>
-            <a href="#" className="post">
-              <span className="source">
-                <span className="media">
-                  <img src={TestAvatar} alt="testavatar" />
-                </span>
-                <span>
-                  <PostInstagram />
-                </span>
-              </span>
-              <div className="preview">preview</div>
-              <div className="options">
-                <PostLink />
-              </div>
-            </a>
+          //   <a href="#" className="post">
+          //     <span className="source">
+          //       <span className="media">
+          //         <img src={TestAvatar} alt="testavatar" />
+          //       </span>
+          //       <span>
+          //         <PostYoutube />
+          //       </span>
+          //     </span>
+          //     <div className="preview">preview</div>
+          //     <div className="options">
+          //       <PostLink />
+          //     </div>
+          //   </a>
+          //   <a href="#" className="post">
+          //     <span className="source">
+          //       <span className="media">
+          //         <img src={TestAvatar} alt="testavatar" />
+          //       </span>
+          //       <span>
+          //         <PostInstagram />
+          //       </span>
+          //     </span>
+          //     <div className="preview">preview</div>
+          //     <div className="options">
+          //       <PostLink />
+          //     </div>
+          //   </a>
 
-            <a href="#" className="post">
-              <span className="source">
-                <span className="media">
-                  <img src={TestAvatar} alt="testavatar" />
-                </span>
-                <span>
-                  <PostTwitter />
-                </span>
-              </span>
-              <div className="preview">preview</div>
-              <div className="options">
-                <PostLink />
-              </div>
-            </a>
+          //   <a href="#" className="post">
+          //     <span className="source">
+          //       <span className="media">
+          //         <img src={TestAvatar} alt="testavatar" />
+          //       </span>
+          //       <span>
+          //         <PostTwitter />
+          //       </span>
+          //     </span>
+          //     <div className="preview">preview</div>
+          //     <div className="options">
+          //       <PostLink />
+          //     </div>
+          //   </a>
 
-            <a href="#" className="post">
-              <span className="source">
-                <span className="media">
-                  <img src={TestAvatar} alt="testavatar" />
-                </span>
-                <span>
-                  <PostYoutube />
-                </span>
-              </span>
-              <div className="preview">preview</div>
-              <div className="options">
-                <PostLink />
-              </div>
-            </a>
-            <a href="#" className="post">
-              <span className="source">
-                <span className="media">
-                  <img src={TestAvatar} alt="testavatar" />
-                </span>
-                <span>
-                  <PostInstagram />
-                </span>
-              </span>
-              <div className="preview">preview</div>
-              <div className="options">
-                <PostLink />
-              </div>
-            </a>
+          //   <a href="#" className="post">
+          //     <span className="source">
+          //       <span className="media">
+          //         <img src={TestAvatar} alt="testavatar" />
+          //       </span>
+          //       <span>
+          //         <PostYoutube />
+          //       </span>
+          //     </span>
+          //     <div className="preview">preview</div>
+          //     <div className="options">
+          //       <PostLink />
+          //     </div>
+          //   </a>
+          //   <a href="#" className="post">
+          //     <span className="source">
+          //       <span className="media">
+          //         <img src={TestAvatar} alt="testavatar" />
+          //       </span>
+          //       <span>
+          //         <PostInstagram />
+          //       </span>
+          //     </span>
+          //     <div className="preview">preview</div>
+          //     <div className="options">
+          //       <PostLink />
+          //     </div>
+          //   </a>
 
-            <a href="#" className="post">
-              <span className="source">
-                <span className="media">
-                  <img src={TestAvatar} alt="testavatar" />
-                </span>
-                <span>
-                  <PostTwitter />
-                </span>
-              </span>
-              <div className="preview">preview</div>
-              <div className="options">
-                <PostLink />
-              </div>
-            </a>
+          //   <a href="#" className="post">
+          //     <span className="source">
+          //       <span className="media">
+          //         <img src={TestAvatar} alt="testavatar" />
+          //       </span>
+          //       <span>
+          //         <PostTwitter />
+          //       </span>
+          //     </span>
+          //     <div className="preview">preview</div>
+          //     <div className="options">
+          //       <PostLink />
+          //     </div>
+          //   </a>
 
-            <a href="#" className="post">
-              <span className="source">
-                <span className="media">
-                  <img src={TestAvatar} alt="testavatar" />
-                </span>
-                <span>
-                  <PostYoutube />
-                </span>
-              </span>
-              <div className="preview">preview</div>
-              <div className="options">
-                <PostLink />
-              </div>
-            </a>
-            <a href="#" className="post">
-              <span className="source">
-                <span className="media">
-                  <img src={TestAvatar} alt="testavatar" />
-                </span>
-                <span>
-                  <PostInstagram />
-                </span>
-              </span>
-              <div className="preview">preview</div>
-              <div className="options">
-                <PostLink />
-              </div>
-            </a>
+          //   <a href="#" className="post">
+          //     <span className="source">
+          //       <span className="media">
+          //         <img src={TestAvatar} alt="testavatar" />
+          //       </span>
+          //       <span>
+          //         <PostYoutube />
+          //       </span>
+          //     </span>
+          //     <div className="preview">preview</div>
+          //     <div className="options">
+          //       <PostLink />
+          //     </div>
+          //   </a>
+          //   <a href="#" className="post">
+          //     <span className="source">
+          //       <span className="media">
+          //         <img src={TestAvatar} alt="testavatar" />
+          //       </span>
+          //       <span>
+          //         <PostInstagram />
+          //       </span>
+          //     </span>
+          //     <div className="preview">preview</div>
+          //     <div className="options">
+          //       <PostLink />
+          //     </div>
+          //   </a>
 
-            <a href="#" className="post">
-              <span className="source">
-                <span className="media">
-                  <img src={TestAvatar} alt="testavatar" />
-                </span>
-                <span>
-                  <PostTwitter />
-                </span>
-              </span>
-              <div className="preview">preview</div>
-              <div className="options">
-                <PostLink />
-              </div>
-            </a>
+          //   <a href="#" className="post">
+          //     <span className="source">
+          //       <span className="media">
+          //         <img src={TestAvatar} alt="testavatar" />
+          //       </span>
+          //       <span>
+          //         <PostTwitter />
+          //       </span>
+          //     </span>
+          //     <div className="preview">preview</div>
+          //     <div className="options">
+          //       <PostLink />
+          //     </div>
+          //   </a>
 
-            <a href="#" className="post">
-              <span className="source">
-                <span className="media">
-                  <img src={TestAvatar} alt="testavatar" />
-                </span>
-                <span>
-                  <PostYoutube />
-                </span>
-              </span>
-              <div className="preview">preview</div>
-              <div className="options">
-                <PostLink />
-              </div>
-            </a>
-            <a href="#" className="post">
-              <span className="source">
-                <span className="media">
-                  <img src={TestAvatar} alt="testavatar" />
-                </span>
-                <span>
-                  <PostInstagram />
-                </span>
-              </span>
-              <div className="preview">preview</div>
-              <div className="options">
-                <PostLink />
-              </div>
-            </a>
+          //   <a href="#" className="post">
+          //     <span className="source">
+          //       <span className="media">
+          //         <img src={TestAvatar} alt="testavatar" />
+          //       </span>
+          //       <span>
+          //         <PostYoutube />
+          //       </span>
+          //     </span>
+          //     <div className="preview">preview</div>
+          //     <div className="options">
+          //       <PostLink />
+          //     </div>
+          //   </a>
+          //   <a href="#" className="post">
+          //     <span className="source">
+          //       <span className="media">
+          //         <img src={TestAvatar} alt="testavatar" />
+          //       </span>
+          //       <span>
+          //         <PostInstagram />
+          //       </span>
+          //     </span>
+          //     <div className="preview">preview</div>
+          //     <div className="options">
+          //       <PostLink />
+          //     </div>
+          //   </a>
 
-            <a href="#" className="post">
-              <span className="source">
-                <span className="media">
-                  <img src={TestAvatar} alt="testavatar" />
-                </span>
-                <span>
-                  <PostTwitter />
-                </span>
-              </span>
-              <div className="preview">preview</div>
-              <div className="options">
-                <PostLink />
-              </div>
-            </a>
+          //   <a href="#" className="post">
+          //     <span className="source">
+          //       <span className="media">
+          //         <img src={TestAvatar} alt="testavatar" />
+          //       </span>
+          //       <span>
+          //         <PostTwitter />
+          //       </span>
+          //     </span>
+          //     <div className="preview">preview</div>
+          //     <div className="options">
+          //       <PostLink />
+          //     </div>
+          //   </a>
 
-            <a href="#" className="post">
-              <span className="source">
-                <span className="media">
-                  <img src={TestAvatar} alt="testavatar" />
-                </span>
-                <span>
-                  <PostYoutube />
-                </span>
-              </span>
-              <div className="preview">preview</div>
-              <div className="options">
-                <PostLink />
-              </div>
-            </a>
-            <a href="#" className="post">
-              <span className="source">
-                <span className="media">
-                  <img src={TestAvatar} alt="testavatar" />
-                </span>
-                <span>
-                  <PostInstagram />
-                </span>
-              </span>
-              <div className="preview">preview</div>
-              <div className="options">
-                <PostLink />
-              </div>
-            </a>
+          //   <a href="#" className="post">
+          //     <span className="source">
+          //       <span className="media">
+          //         <img src={TestAvatar} alt="testavatar" />
+          //       </span>
+          //       <span>
+          //         <PostYoutube />
+          //       </span>
+          //     </span>
+          //     <div className="preview">preview</div>
+          //     <div className="options">
+          //       <PostLink />
+          //     </div>
+          //   </a>
+          //   <a href="#" className="post">
+          //     <span className="source">
+          //       <span className="media">
+          //         <img src={TestAvatar} alt="testavatar" />
+          //       </span>
+          //       <span>
+          //         <PostInstagram />
+          //       </span>
+          //     </span>
+          //     <div className="preview">preview</div>
+          //     <div className="options">
+          //       <PostLink />
+          //     </div>
+          //   </a>
 
-            <a href="#" className="post">
-              <span className="source">
-                <span className="media">
-                  <img src={TestAvatar} alt="testavatar" />
-                </span>
-                <span>
-                  <PostTwitter />
-                </span>
-              </span>
-              <div className="preview">preview</div>
-              <div className="options">
-                <PostLink />
-              </div>
-            </a>
+          //   <a href="#" className="post">
+          //     <span className="source">
+          //       <span className="media">
+          //         <img src={TestAvatar} alt="testavatar" />
+          //       </span>
+          //       <span>
+          //         <PostTwitter />
+          //       </span>
+          //     </span>
+          //     <div className="preview">preview</div>
+          //     <div className="options">
+          //       <PostLink />
+          //     </div>
+          //   </a>
 
-            <a href="#" className="post">
-              <span className="source">
-                <span className="media">
-                  <img src={TestAvatar} alt="testavatar" />
-                </span>
-                <span>
-                  <PostYoutube />
-                </span>
-              </span>
-              <div className="preview">preview</div>
-              <div className="options">
-                <PostLink />
-              </div>
-            </a>
-            <a href="#" className="post">
-              <span className="source">
-                <span className="media">
-                  <img src={TestAvatar} alt="testavatar" />
-                </span>
-                <span>
-                  <PostInstagram />
-                </span>
-              </span>
-              <div className="preview">preview</div>
-              <div className="options">
-                <PostLink />
-              </div>
-            </a>
+          //   <a href="#" className="post">
+          //     <span className="source">
+          //       <span className="media">
+          //         <img src={TestAvatar} alt="testavatar" />
+          //       </span>
+          //       <span>
+          //         <PostYoutube />
+          //       </span>
+          //     </span>
+          //     <div className="preview">preview</div>
+          //     <div className="options">
+          //       <PostLink />
+          //     </div>
+          //   </a>
+          //   <a href="#" className="post">
+          //     <span className="source">
+          //       <span className="media">
+          //         <img src={TestAvatar} alt="testavatar" />
+          //       </span>
+          //       <span>
+          //         <PostInstagram />
+          //       </span>
+          //     </span>
+          //     <div className="preview">preview</div>
+          //     <div className="options">
+          //       <PostLink />
+          //     </div>
+          //   </a>
 
-            <a href="#" className="post">
-              <span className="source">
-                <span className="media">
-                  <img src={TestAvatar} alt="testavatar" />
-                </span>
-                <span>
-                  <PostTwitter />
-                </span>
-              </span>
-              <div className="preview">preview</div>
-              <div className="options">
-                <PostLink />
-              </div>
-            </a>
+          //   <a href="#" className="post">
+          //     <span className="source">
+          //       <span className="media">
+          //         <img src={TestAvatar} alt="testavatar" />
+          //       </span>
+          //       <span>
+          //         <PostTwitter />
+          //       </span>
+          //     </span>
+          //     <div className="preview">preview</div>
+          //     <div className="options">
+          //       <PostLink />
+          //     </div>
+          //   </a>
 
-            <a href="#" className="post">
-              <span className="source">
-                <span className="media">
-                  <img src={TestAvatar} alt="testavatar" />
-                </span>
-                <span>
-                  <PostYoutube />
-                </span>
-              </span>
-              <div className="preview">preview</div>
-              <div className="options">
-                <PostLink />
-              </div>
-            </a>
-            <a href="#" className="post">
-              <span className="source">
-                <span className="media">
-                  <img src={TestAvatar} alt="testavatar" />
-                </span>
-                <span>
-                  <PostYoutube />
-                </span>
-              </span>
-              <div className="preview">preview</div>
-              <div className="options">
-                <PostLink />
-              </div>
-            </a>
-          </div>
+          //   <a href="#" className="post">
+          //     <span className="source">
+          //       <span className="media">
+          //         <img src={TestAvatar} alt="testavatar" />
+          //       </span>
+          //       <span>
+          //         <PostYoutube />
+          //       </span>
+          //     </span>
+          //     <div className="preview">preview</div>
+          //     <div className="options">
+          //       <PostLink />
+          //     </div>
+          //   </a>
+          //   <a href="#" className="post">
+          //     <span className="source">
+          //       <span className="media">
+          //         <img src={TestAvatar} alt="testavatar" />
+          //       </span>
+          //       <span>
+          //         <PostYoutube />
+          //       </span>
+          //     </span>
+          //     <div className="preview">preview</div>
+          //     <div className="options">
+          //       <PostLink />
+          //     </div>
+          //   </a>
+          }
         </div>
       </div>
     );

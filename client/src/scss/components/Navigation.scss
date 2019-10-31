@@ -9,11 +9,17 @@
   width: 100%;
   position: fixed;
   .navigation {
-    max-width: 1200px;
+    max-width: 1360px;
     height: 49px;
     margin: 0 auto;
     @include center;
     .left {
+      h1 {
+        font-weight: 900;
+        color: $primary;
+        font-size: 20px;
+        margin-left: 6px;
+      }
       @include center;
       height: 49px;
       margin: 0 20px;
@@ -25,13 +31,14 @@
           form {
             input {
               height: 33px;
-              border: 1px solid $tertiary;
+              border: 1px solid #37393d;
               border-radius: 3px;
-              background: $secondary;
+              background: $background-secondary;
               padding: 0 10px;
               min-width: 300px;
               margin-left: 20px;
               color: $primary;
+              padding-right: 38px;
             }
             input::placeholder {
               color: $tertiary;

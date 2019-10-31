@@ -26,7 +26,7 @@ class Navigation extends React.Component {
         <div className="navigation-container">
           <div className="navigation">
             <div className="left">
-              <p>logo name</p>
+              <h1>Logo Name</h1>
               <Search />
             </div>
             <div className="right">
