@@ -9,6 +9,8 @@ import { ExternalLinkAlt } from "styled-icons/fa-solid/ExternalLinkAlt";
 import { User } from "styled-icons/fa-solid/User";
 import TestAvatar from "../../assets/test-avatar.png";
 import numeral from "numeral";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from "react-loader-spinner";
 
 const PostYoutube = styled(Youtube)`
   color: #fa0202;
@@ -182,6 +184,16 @@ class Feed extends React.Component {
                   return <p>incorrect type</p>;
                 }
               })}
+              {this.state.gettingFeed && this.state.feed && (
+                <div className="loader-spinner">
+                  <Loader
+                    type="TailSpin"
+                    color="rgb(159, 177, 57)"
+                    height={50}
+                    width={50}
+                  />
+                </div>
+              )}
             </div>
           )
           // <div className="general">
