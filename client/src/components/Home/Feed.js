@@ -99,6 +99,10 @@ class Feed extends React.Component {
     };
   }
 
+  toggleDetails = () => {
+    this.setState({});
+  };
+
   fetchFeed = async (nextPage = 0) => {
     try {
       this.setState({ gettingFeed: true });
@@ -176,6 +180,9 @@ class Feed extends React.Component {
                         </p>
                       </div>
                       <div className="options">
+                        <p className="details">
+                          <span>#{i + 1} </span>
+                        </p>
                         <PostLink />
                       </div>
                     </a>

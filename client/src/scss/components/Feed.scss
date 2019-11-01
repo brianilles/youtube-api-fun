@@ -86,19 +86,20 @@
         }
         .options {
           display: flex;
-          justify-content: flex-end;
-          align-items: flex-end;
+          justify-content: space-between;
+          align-items: center;
+          .details {
+            color: $background-secondary;
+            font-weight: 700;
+          }
         }
       }
       .post:hover {
-        // .options {
-        //   svg {
-        //     color: rgb(139, 139, 139);
-        //   }
-        // }
-        // overflow: visible;
         transition: 0.2s ease-in-out;
         border: 3px solid #37393d;
+      }
+      .post:hover .details {
+        color: #fa0202be;
       }
     }
     .loader-spinner {
