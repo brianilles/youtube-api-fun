@@ -92,6 +92,9 @@
             color: $background-secondary;
             font-weight: 700;
           }
+          a:hover {
+            color: $primary;
+          }
         }
       }
       .post:hover {
@@ -104,6 +107,34 @@
     }
     .loader-spinner {
       margin: 40px auto 0 auto;
+    }
+  }
+  .error {
+    color: $primary;
+    font-weight: 600;
+    margin: 120px auto;
+    width: 400px;
+    height: 150px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background: $background-secondary;
+    button {
+      background: $primary;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 50px;
+      color: $secondary;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: $primary-dark;
+    }
+    button:focus {
+      outline-radius: 50px;
     }
   }
 }

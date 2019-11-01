@@ -105,8 +105,9 @@ class Feed extends React.Component {
   };
 
   fetchFeed = async (nextPage = 0) => {
+    // axios.defaults.timeout = 10000;
     try {
-      this.setState({ gettingFeed: true });
+      this.setState({ gettingFeed: true, gettingFeedFailure: false });
       const URI = `http://localhost:8100/api/feeds/public/${nextPage}`;
       const res = await axios.get(URI);
 
@@ -125,11 +126,16 @@ class Feed extends React.Component {
           nextPage: res.data.nextPageToken
         });
       }
-
-      console.log(res);
     } catch (error) {
       console.error(error);
-      this.setState({ gettingFeed: null, gettingFeedFailure: true });
+      this.setState({
+        gettingFeed: null,
+        gettingFeedSuccess: null,
+        gettingFeedFailure: true,
+        error: null,
+        feed: null,
+        nextPage: 0
+      });
     }
   };
 
@@ -139,6 +145,7 @@ class Feed extends React.Component {
       <div className="feed-container">
         <div className="feed">
           <h1>Top Posts</h1>
+
           {this.state.gettingFeed && !this.state.feed && (
             <div className="loader-container">
               {array.map((_, i) => {
@@ -184,12 +191,16 @@ class Feed extends React.Component {
                         <p className="details">
                           <span>#{i + 1} </span>
                         </p>
-                        <PostLink />
+                        <a
+                          href={`https://www.youtube.com/watch?v=${post.id}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <PostLink />
+                        </a>
                       </div>
                     </a>
                   );
-                } else {
-                  return <p>incorrect type</p>;
                 }
               })}
               {this.state.gettingFeed && this.state.feed && (
@@ -602,6 +613,12 @@ class Feed extends React.Component {
           //     </div>
           //   </a>
           }
+          {this.state.gettingFeedFailure && (
+            <p className="error">
+              Can't connect{" "}
+              <button onClick={() => this.fetchFeed()}>Try again</button>
+            </p>
+          )}
         </div>
       </div>
     );
