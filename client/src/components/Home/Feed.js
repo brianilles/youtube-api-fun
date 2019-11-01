@@ -83,8 +83,16 @@ class Feed extends React.Component {
     this.fetchFeed();
 
     window.onscroll = e => {
-      if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-        this.fetchFeed(this.state.nextPage);
+      e.preventDefault();
+      console.log(window.innerHeight + window.scrollY);
+      console.log(document.body.offsetHeight);
+      if (
+        window.innerHeight + window.scrollY + 500 >=
+        document.body.offsetHeight
+      ) {
+        if (!this.state.gettingFeed) {
+          this.fetchFeed(this.state.nextPage);
+        }
       }
     };
   }
@@ -124,7 +132,7 @@ class Feed extends React.Component {
       <div className="feed-container">
         <div className="feed">
           <h1>Top Posts</h1>
-          {this.state.gettingFeed && (
+          {this.state.gettingFeed && !this.state.feed && (
             <div className="loader-container">
               {array.map((_, i) => {
                 // change key
@@ -136,51 +144,46 @@ class Feed extends React.Component {
               })}
             </div>
           )}
-          {!this.state.gettingFeed &&
-            this.state.gettingFeedSuccess &&
-            this.state.feed && (
-              <div className="general">
-                {this.state.feed.map((post, i) => {
-                  if (post.kind === "youtube#video") {
-                    return (
-                      // change key
-                      <a
-                        href={`https://www.youtube.com/watch?v=${post.id}`}
-                        className="post"
-                        key={i}
-                      >
-                        <span className="source">
-                          <span className="media">
-                            {/* <img src={TestAvatar} alt="testavatar" /> */}
-                            <PostUser />
-                            <p>{post.snippet.channelTitle}</p>
-                          </span>
-                          <span>
-                            <PostYoutube />
-                          </span>
+          {this.state.gettingFeedSuccess && this.state.feed && (
+            <div className="general">
+              {this.state.feed.map((post, i) => {
+                if (post.kind === "youtube#video") {
+                  return (
+                    // change key
+                    <a
+                      href={`https://www.youtube.com/watch?v=${post.id}`}
+                      className="post"
+                      key={i}
+                    >
+                      <span className="source">
+                        <span className="media">
+                          {/* <img src={TestAvatar} alt="testavatar" /> */}
+                          <PostUser />
+                          <p>{post.snippet.channelTitle}</p>
                         </span>
-                        <div className="preview">
-                          <img
-                            src={post.snippet.thumbnails.medium.url}
-                            alt=""
-                          />
-                          <p className="title">{post.snippet.title}</p>
-                          <p>
-                            {numeral(post.statistics.viewCount).format("0.0a")}{" "}
-                            views
-                          </p>
-                        </div>
-                        <div className="options">
-                          <PostLink />
-                        </div>
-                      </a>
-                    );
-                  } else {
-                    return <p>incorrect type</p>;
-                  }
-                })}
-              </div>
-            )
+                        <span>
+                          <PostYoutube />
+                        </span>
+                      </span>
+                      <div className="preview">
+                        <img src={post.snippet.thumbnails.medium.url} alt="" />
+                        <p className="title">{post.snippet.title}</p>
+                        <p>
+                          {numeral(post.statistics.viewCount).format("0.0a")}{" "}
+                          views
+                        </p>
+                      </div>
+                      <div className="options">
+                        <PostLink />
+                      </div>
+                    </a>
+                  );
+                } else {
+                  return <p>incorrect type</p>;
+                }
+              })}
+            </div>
+          )
           // <div className="general">
           //   <a href="#" className="post">
           //     <span className="source">
