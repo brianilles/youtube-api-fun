@@ -11,6 +11,7 @@ import TestAvatar from "../../assets/test-avatar.png";
 import numeral from "numeral";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
+import moment from "moment";
 
 const PostYoutube = styled(Youtube)`
   color: #fa0202;
@@ -89,7 +90,7 @@ class Feed extends React.Component {
       console.log(window.innerHeight + window.scrollY);
       console.log(document.body.offsetHeight);
       if (
-        window.innerHeight + window.scrollY + 500 >=
+        window.innerHeight + window.scrollY + 800 >=
         document.body.offsetHeight
       ) {
         if (!this.state.gettingFeed) {
@@ -176,7 +177,7 @@ class Feed extends React.Component {
                         <p className="title">{post.snippet.title}</p>
                         <p>
                           {numeral(post.statistics.viewCount).format("0.0a")}{" "}
-                          views
+                          views · {moment(post.snippet.publishedAt).fromNow()}
                         </p>
                       </div>
                       <div className="options">
