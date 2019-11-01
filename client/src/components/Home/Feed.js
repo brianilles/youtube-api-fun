@@ -6,7 +6,9 @@ import { Youtube } from "styled-icons/fa-brands/Youtube";
 import { Twitter } from "styled-icons/fa-brands/Twitter";
 import { Instagram } from "styled-icons/fa-brands/Instagram";
 import { ExternalLinkAlt } from "styled-icons/fa-solid/ExternalLinkAlt";
+import { User } from "styled-icons/fa-solid/User";
 import TestAvatar from "../../assets/test-avatar.png";
+import numeral from "numeral";
 
 const PostYoutube = styled(Youtube)`
   color: #fa0202;
@@ -35,11 +37,37 @@ const PostInstagram = styled(Instagram)`
   width: 30px;
 `;
 
+const PostUser = styled(User)`
+  color: #2e3035;
+  background: #1d1f24;
+  padding: 4px;
+  border-radius: 50px;
+  height: 36px;
+  width: 36px;
+`;
+
 const PostLink = styled(ExternalLinkAlt)`
   color: rgb(139, 139, 139);
   height: 15px;
   width: 15px;
 `;
+
+const PostLoader = () => (
+  <svg
+    width="236"
+    height="270"
+    viewBox="0 0 236 270"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <rect width="236" height="270" rx="12" fill="#2E3035" />
+    <circle cx="35" cy="37" r="19" fill="#26282E" />
+    <rect x="21" y="73" width="195" height="93" fill="#26282E" />
+    <rect x="21" y="183" width="195" height="16" rx="8" fill="#26282E" />
+    <rect x="21" y="206" width="113" height="16" rx="8" fill="#26282E" />
+    <rect x="62" y="29" width="113" height="16" rx="8" fill="#26282E" />
+  </svg>
+);
 
 class Feed extends React.Component {
   state = {
@@ -47,24 +75,42 @@ class Feed extends React.Component {
     gettingFeedSuccess: null,
     gettingFeedFailure: null,
     error: null,
-    feed: null
+    feed: null,
+    nextPage: 0
   };
 
   componentDidMount() {
     this.fetchFeed();
+
+    window.onscroll = e => {
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+        this.fetchFeed(this.state.nextPage);
+      }
+    };
   }
 
-  fetchFeed = async () => {
-    console.log("FETCHING FEED");
+  fetchFeed = async (nextPage = 0) => {
     try {
       this.setState({ gettingFeed: true });
-      const URI = "http://localhost:8100/api/feeds/public";
+      const URI = `http://localhost:8100/api/feeds/public/${nextPage}`;
       const res = await axios.get(URI);
-      this.setState({
-        gettingFeed: null,
-        gettingFeedSuccess: true,
-        feed: res.data.items
-      });
+
+      if (this.state.nextPage) {
+        this.setState({
+          gettingFeed: null,
+          gettingFeedSuccess: true,
+          feed: [...this.state.feed, ...res.data.items],
+          nextPage: res.data.nextPageToken
+        });
+      } else {
+        this.setState({
+          gettingFeed: null,
+          gettingFeedSuccess: true,
+          feed: res.data.items,
+          nextPage: res.data.nextPageToken
+        });
+      }
+
       console.log(res);
     } catch (error) {
       console.error(error);
@@ -73,11 +119,23 @@ class Feed extends React.Component {
   };
 
   render() {
+    const array = new Array(12).fill("");
     return (
       <div className="feed-container">
         <div className="feed">
           <h1>Top Posts</h1>
-          {this.state.gettingFeed && <p>getting feed ...</p>}
+          {this.state.gettingFeed && (
+            <div className="loader-container">
+              {array.map((_, i) => {
+                // change key
+                return (
+                  <div className="loader" key={i}>
+                    <PostLoader />
+                  </div>
+                );
+              })}
+            </div>
+          )}
           {!this.state.gettingFeed &&
             this.state.gettingFeedSuccess &&
             this.state.feed && (
@@ -86,10 +144,16 @@ class Feed extends React.Component {
                   if (post.kind === "youtube#video") {
                     return (
                       // change key
-                      <a href="#" className="post" key={i}>
+                      <a
+                        href={`https://www.youtube.com/watch?v=${post.id}`}
+                        className="post"
+                        key={i}
+                      >
                         <span className="source">
                           <span className="media">
-                            <img src={TestAvatar} alt="testavatar" />
+                            {/* <img src={TestAvatar} alt="testavatar" /> */}
+                            <PostUser />
+                            <p>{post.snippet.channelTitle}</p>
                           </span>
                           <span>
                             <PostYoutube />
@@ -100,7 +164,11 @@ class Feed extends React.Component {
                             src={post.snippet.thumbnails.medium.url}
                             alt=""
                           />
-                          <p>{post.snippet.title}</p>
+                          <p className="title">{post.snippet.title}</p>
+                          <p>
+                            {numeral(post.statistics.viewCount).format("0.0a")}{" "}
+                            views
+                          </p>
                         </div>
                         <div className="options">
                           <PostLink />
