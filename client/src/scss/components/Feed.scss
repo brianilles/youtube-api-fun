@@ -93,19 +93,22 @@
             color: $background-secondary;
             font-weight: 700;
           }
-          a:hover {
-            svg {
-              color: $primary;
-            }
-          }
         }
       }
       .post:hover {
+        cursor: pointer;
         transition: 0.2s ease-in-out;
         border: 3px solid #37393d;
       }
       .post:hover .details {
         color: #fa0202be;
+      }
+      .post:hover {
+        .options {
+          svg {
+            color: $primary;
+          }
+        }
       }
     }
     .loader-spinner {

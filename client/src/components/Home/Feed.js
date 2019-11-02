@@ -164,8 +164,10 @@ class Feed extends React.Component {
                 if (post.kind === "youtube#video") {
                   return (
                     // change key
-                    <div
+                    <a
                       href={`https://www.youtube.com/watch?v=${post.id}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="post"
                       key={i}
                     >
@@ -191,15 +193,9 @@ class Feed extends React.Component {
                         <p className="details">
                           <span>#{i + 1} </span>
                         </p>
-                        <a
-                          href={`https://www.youtube.com/watch?v=${post.id}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <PostLink />
-                        </a>
+                        <PostLink />
                       </div>
-                    </div>
+                    </a>
                   );
                 }
               })}
