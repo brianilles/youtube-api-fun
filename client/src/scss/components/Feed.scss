@@ -26,6 +26,7 @@
       justify-content: space-between;
       padding: 0 5px;
       .post {
+        cursor: default;
         text-decoration: none;
         color: $tertiary;
         width: 236px;
@@ -93,7 +94,9 @@
             font-weight: 700;
           }
           a:hover {
-            color: $primary;
+            svg {
+              color: $primary;
+            }
           }
         }
       }
@@ -133,8 +136,8 @@
     button:hover {
       background: $primary-dark;
     }
-    button:focus {
-      outline-radius: 50px;
-    }
+    // button:focus {
+
+    // }
   }
 }
