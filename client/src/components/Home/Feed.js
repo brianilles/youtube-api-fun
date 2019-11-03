@@ -84,11 +84,8 @@ class Feed extends React.Component {
 
   componentDidMount() {
     this.fetchFeed();
-
     window.onscroll = e => {
       e.preventDefault();
-      console.log(window.innerHeight + window.scrollY);
-      console.log(document.body.offsetHeight);
       if (
         window.innerHeight + window.scrollY + 800 >=
         document.body.offsetHeight
@@ -140,7 +137,7 @@ class Feed extends React.Component {
   };
 
   render() {
-    const array = new Array(12).fill("");
+    const array = new Array(16).fill("");
     return (
       <div className="feed-container">
         <div className="feed">
