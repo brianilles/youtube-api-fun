@@ -1,4 +1,4 @@
-# A small project created to get to know the Youtube API.
+# A small project created to get to know the YouTube API.
 
 ## To Get Started
 
@@ -6,8 +6,8 @@ Download Project Files and Install Dependencies
 
 - **Fork** and **Clone** this repository.
 - **CD into the folder** where you cloned the repository.
-- Use your google developer account to create an API key
-- Create .env file and save the API key. You may need to restart the environment to make it visible.
+- Use your **Google developer account** to create a project and a **YouTube Data API v3 API key**.
+- Create `.env` file and save the API key. You may need to restart the environment to make it visible.
 - Type `yarn` or `npm install` to download all dependencies listed inside `package.json` in both the client and server directory.
 - To start the development server type `yarn server` or `npm run server` in the client.
 - To start the development client server type `yarn start` or `npm run start` in the client.
