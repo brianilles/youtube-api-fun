@@ -10,7 +10,7 @@ router.get("/search/channel/:channel", async (req, res) => {
         q: channel,
         type: "channel",
         maxResults: 10,
-        key: "AIzaSyDDKNauQQXppEQAvr1I33ukU5egBHIPmN8"
+        key: process.env.YOUTUBE_API_KEY
       }
     });
     res.status(200).json(r.data.items);
